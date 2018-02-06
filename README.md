@@ -14,13 +14,17 @@ mvn clean install
 cp hanlp-tokenizer-0.1.tar.gz /your/es/plugins/
 tar -zxvf hanlp-tokenizer-0.1.tar.gz
 rm hanlp-tokenizer-0.1.tar.gz
+#config/jvm.options增加一行
+-Djava.security.policy=../plugins/hanlp-analysis/plugin-security.policy
 restart es
+#如果还报权限的问题 可以把plugin-security.policy中的内容添加到 java.policy中去
+路径  /etc/java-8-openjdk/security/java.policy
 ```
 提供三种分词方式
 ```
-hanlp-search nlp分词
-hanlp-index 索引分词
-hanlp-synonym 同义词索引分词
+hanlp_search nlp分词
+hanlp_index 索引分词
+hanlp_synonym 同义词索引分词
 ```
 测试
 ```
@@ -125,6 +129,28 @@ POST http://localhost:9200/<index_name>/_analyze?analyzer=hanlp_search&pretty=tr
 	<entry key="remote_ext_synonyms">http://your/sysnonym/dictionary</entry>
 </properties>
 ```
+- 远程分词方式以php语言为示例,只要ETag或Last-Modified任何一个有变化，就会更新词库
+```
+<?php
+header("Content-type: text/html; charset=utf-8"); 
+header('Last-Modified: '.gmdate('D, d M Y H:i:s', time()).' GMT');
+header('ETag: "5816f349-19"');
+echo "汇金\n";
+echo "汇金街\n";
+echo "恒大\n";
+echo "京北\n";
+echo "恒大城\n";
+echo "华龙网\n";
+echo "海数\n";
+echo "文化城\n";
+echo "名锦园\n";
+echo "名锦\n";
+echo "市府街\n";
+echo "街口\n";
+?>
+
+```
+
 - 用户词典格式为 每行一个词和词性 词性可以不写 默认为nz
 ```
 天气 n_tianqi

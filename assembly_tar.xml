@@ -12,6 +12,7 @@
                 <include>hanlp-hot-update.cfg.xml</include>
                 <include>plugin-descriptor.properties</include>
                 <include>plugin-security.policy</include>
+                <include>custom.dic</include>
             </includes>
             <fileMode>0755</fileMode>
             <outputDirectory>hanlp-analyzer/</outputDirectory>
