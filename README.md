@@ -7,7 +7,7 @@
 - 增加远程词典热更新（用户词典，停词典，同义词典）
 
 ### 使用
-目前支持的es版本为2.3.5和5.6.3，其他版本请修改plugin-descriptor.properties文件的es版本
+目前支持的es版本为5.6.3，其他版本请修改plugin-descriptor.properties文件的es版本
 ```
 git clone this project
 mvn clean install
@@ -115,6 +115,8 @@ POST http://localhost:9200/<index_name>/_analyze?analyzer=hanlp_search&pretty=tr
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 	<comment>HanLP 扩展配置</comment>
+	<!--用户可以在这里配置本地自定义扩展字典，多个用;号分开，支持当前目录和绝对路径两种方式 -->
+	<entry key="remote_ext_custom">我的词典.txt;/home/eboss/elastic/elasticsearch/bin/data/dictionary/custom/上海地名.txt;</entry>
 	<!--用户可以在这里配置远程扩展字典 -->
 	<entry key="remote_ext_dict">http://your/used/dictionary</entry>
 	<!--用户可以在这里配置远程扩展停止词字典-->
@@ -166,4 +168,4 @@ POST http://localhost:9200/<index_name>/_analyze?analyzer=hanlp_search&pretty=tr
 ### 热更新功能参考[elasticsearch-analysis-ik](https://github.com/medcl/elasticsearch-analysis-ik)
 ### power by [HanLP](https://github.com/hankcs/HanLP)
 
- _作者：Eugen 邮箱：745045993@qq.com_ # hanlp-tokenizer
+ _作者：liangpz521 邮箱：327168521@qq.com_ # hanlp-tokenizer
