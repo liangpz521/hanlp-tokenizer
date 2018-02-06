@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>HanLP 扩展配置</comment>
+	<entry key="remote_ext_custom">我的词典.txt;/home/eboss/elastic/elasticsearch/bin/data/dictionary/custom/上海地名.txt;</entry>
+	<!--用户可以在这里配置远程扩展字典 -->
+	<entry key="remote_ext_dict">http://test.myweb.com/hanlp.php</entry>
+	<!--用户可以在这里配置远程扩展停止词字典-->
+	<!--<entry key="remote_ext_stopwords">http://zmcapi.d..com/key-words/hot-update/HOT_UPDATE_FOR_STOP</entry>-->
+	<!--用户可以在这里配置远程同义词字典-->
+	<!--<entry key="remote_ext_synonyms">http://zmcapi..com/lore-repository/lore-synonyms/hot-update</entry>-->
+</properties>
