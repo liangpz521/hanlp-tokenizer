@@ -166,4 +166,4 @@ POST http://localhost:9200/<index_name>/_analyze?analyzer=hanlp_search&pretty=tr
 ### 热更新功能参考[elasticsearch-analysis-ik](https://github.com/medcl/elasticsearch-analysis-ik)
 ### power by [HanLP](https://github.com/hankcs/HanLP)
 
- _作者：Eugen 邮箱：745045993@qq.com_ 
+ _作者：Eugen 邮箱：745045993@qq.com_ # hanlp-tokenizer
