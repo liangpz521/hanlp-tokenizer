@@ -14,10 +14,16 @@ package com.hanlp.tokenizer.core;
  * @version 1.0
  */
 public enum  SegmentationType {
-    index("hanlp_index"),
-    search("hanlp_search"),
-    synonym("hanlp_synonym");
-
+    hanlp("hanlp2"),//标准分词
+    standard("hanlp-standard"),//标准分词
+    index("hanlp-index"),//索引分词
+    search("hanlp-search"),//NLP分词
+    synonym("hanlp-synonym"),//同义词分词 与标准分词一样
+    nlp("hanlp-nlp"),//NLP分词
+    nshort("hanlp-nshort"),//N-最短路径分词
+    dijkstra("hanlp-dijkstra"),//最短路分词
+//    crf("hanlp-crf"),//CRF分词
+    speed("hanlp-speed");//极速词典分词
     private String title;
 
     SegmentationType(String title) {

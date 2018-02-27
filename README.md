@@ -22,9 +22,14 @@ restart es
 ```
 提供三种分词方式
 ```
-hanlp_search nlp分词
+hanlp_search 或 hanlp_nlp nlp分词
 hanlp_index 索引分词
 hanlp_synonym 同义词索引分词
+hanlp或standard  基本分词
+hanlp_nshort  N-最短路径分词
+hanlp_dijkstra 最短路分词
+hanlp_speed  极速词典分词
+hanlp_crf  CRF分词 暂时不支持
 ```
 测试
 ```
@@ -195,3 +200,5 @@ echo "街口\n";
 ### power by [HanLP](https://github.com/hankcs/HanLP)
 
  _作者：liangpz521 邮箱：327168521@qq.com_ # hanlp-tokenizer
+ 
+ 另一开源插件：https://gitee.com/kennfalcon/elasticsearch-analysis-hanlp

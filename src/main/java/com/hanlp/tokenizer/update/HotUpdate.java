@@ -11,6 +11,7 @@ import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.env.Environment;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -80,11 +81,9 @@ public class HotUpdate {
             String usedLocation = getProperty(REMOTE_EXT_DICT);
             String stopLocation = getProperty(REMOTE_EXT_STOP);
             String synonymLocation = getProperty(REMOTE_EXT_SYNONYMS);
-//            String custom = getProperty(REMOTE_EXT_CUSTOM);
-//            String fileName = HANLP_TOKENIZER_ROOT.toString()+"/"+custom;
-//            logger.info("文件路径："+fileName);
             String fileName = null;
             String extCustomWordDictCfg = getProperty(REMOTE_EXT_CUSTOM);
+
             if (extCustomWordDictCfg != null) {
                 String[] filePaths = extCustomWordDictCfg.split(";");
                 for (String filePath : filePaths) {
@@ -97,7 +96,7 @@ public class HotUpdate {
                         }else{
                             fileName = filePath;
                         }
-//                        logger.info(fileName);
+                        logger.info(fileName);
 
                         //读取文件进行分词
                         BufferedReader reader = new BufferedReader(new FileReader(fileName));//构造一个BufferedReader类来读取文件
@@ -107,7 +106,15 @@ public class HotUpdate {
                             if (message.length == 2) {
                                 CustomDictionary.add(message[0], message[1]);
                             } else {
-                                CustomDictionary.add(line);
+                                //用于判断是否加入了词性
+                                String[] msg = line.split(" ");
+                                if(msg.length >1){
+//                                    System.out.println(Arrays.toString(msg));
+                                    CustomDictionary.add(msg[0], msg[1]+' '+msg[2]);
+                                }else {
+
+                                    CustomDictionary.add(line);
+                                }
 //                                logger.info("名字："+line);
                             }
                         }

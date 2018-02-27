@@ -22,6 +22,10 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedTransferQueue;
 
+import com.hankcs.hanlp.seg.CRF.CRFSegment;
+import com.hankcs.hanlp.seg.Dijkstra.DijkstraSegment;
+import com.hankcs.hanlp.seg.NShort.NShortSegment;
+import com.hankcs.hanlp.seg.Other.DoubleArrayTrieSegment;
 /**
  * <p></p>
  *
@@ -61,6 +65,11 @@ public class MyTokenizer extends Tokenizer {
 
     private Segment NLPSegment = HanLP.newSegment();
     private Segment indexSegment = IndexTokenizer.SEGMENT;
+    private Segment nshortSegment = new NShortSegment();
+    private Segment dijkstraSegment = new DijkstraSegment();
+//    private Segment crfSegment = new CRFSegment();
+    private Segment speedSegment = new DoubleArrayTrieSegment();
+
 
     private SegmentationType segmentationType;
     private BufferedReader reader = null;
@@ -84,6 +93,47 @@ public class MyTokenizer extends Tokenizer {
     }
 
     private Segment getSegment() {
+        Segment segment;
+        if (segmentationType == SegmentationType.hanlp || segmentationType == SegmentationType.standard) {
+            segment = NLPSegment;
+            segment.enableIndexMode(false);
+        }else if (segmentationType == SegmentationType.index || segmentationType == SegmentationType.synonym) {
+            segment = indexSegment;
+//            segment.enableIndexMode(true);
+//                    //.enableOffset(true)
+//                    .enableJapaneseNameRecognize(true) // 日本人名识别
+//                    .enableNumberQuantifierRecognize(true) //数量词识别
+//                    .enableOrganizationRecognize(true) //机构名识别
+//                    .enableNameRecognize(true)
+//                    .enablePlaceRecognize(true)
+//                    .enableTranslatedNameRecognize(true) //音译人名识别
+////                    .enableOrganizationRecognize(true)
+//                    .enableNumberQuantifierRecognize(true) //数量词识别
+//                    .enablePartOfSpeechTagging(true);//词性标注
+
+        } else if(segmentationType == SegmentationType.search || segmentationType == SegmentationType.nlp) {
+            segment = NLPSegment;
+            segment.enableNameRecognize(true).enableTranslatedNameRecognize(true)
+                    .enableJapaneseNameRecognize(true).enablePlaceRecognize(true)
+                    .enableOrganizationRecognize(true).enablePartOfSpeechTagging(true);
+        } else if(segmentationType == SegmentationType.nshort ) {
+            segment = nshortSegment;
+            segment.enableCustomDictionary(false)
+                    .enablePlaceRecognize(true)
+                    .enableOrganizationRecognize(true);
+        } else if(segmentationType == SegmentationType.dijkstra ) {
+            segment = dijkstraSegment;
+            segment.enableCustomDictionary(false)
+                    .enablePlaceRecognize(true).enableOrganizationRecognize(true);
+        }
+        else{
+            segment = speedSegment;
+            segment.enableCustomDictionary(true).enablePartOfSpeechTagging(true);
+        }
+        return segment;
+    }
+
+    private Segment getSegment2() {
         Segment segment;
         if (segmentationType == SegmentationType.index || segmentationType == SegmentationType.synonym) {
             segment = indexSegment;

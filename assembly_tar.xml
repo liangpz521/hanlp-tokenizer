@@ -13,6 +13,7 @@
                 <include>plugin-descriptor.properties</include>
                 <include>plugin-security.policy</include>
                 <include>custom.dic</include>
+                <include>dict/*</include>
             </includes>
             <fileMode>0755</fileMode>
             <outputDirectory>hanlp-analyzer/</outputDirectory>
