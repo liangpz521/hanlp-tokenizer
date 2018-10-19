@@ -14,7 +14,7 @@ package com.hanlp.tokenizer.core;
  * @version 1.0
  */
 public enum  SegmentationType {
-    hanlp("hanlp2"),//标准分词
+    hanlp("hanlp"),//标准分词
     standard("hanlp-standard"),//标准分词
     index("hanlp-index"),//索引分词
     search("hanlp-search"),//NLP分词
