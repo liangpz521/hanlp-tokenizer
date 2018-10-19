@@ -7,7 +7,7 @@
 - 增加远程词典热更新（用户词典，停词典，同义词典）
 
 ### 使用
-目前支持的es版本为5.6.3，其他版本请修改plugin-descriptor.properties文件的es版本
+目前支持的es版本为6.4.2，其他版本请修改plugin-descriptor.properties文件的es版本
 ```
 git clone this project
 mvn clean install
